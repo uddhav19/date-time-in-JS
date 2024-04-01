@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date-time</title>
+    <style>
+      body {
+        text-align: center;
+        background-color: #f5f5f5;
+        margin: 0;
+        background-color: #00DBDE;
+        background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+        padding: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 100px auto;
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+        font-family: Arial, sans-serif;
+        background-color: #4158D0;
+        background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+      }
+
+      label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 10px;
+        color: #333333;
+      }
+
+      .calender {
+        height: 35px;
+        width: 80%;
+        border-radius: 20px;
+        font-size: 20px;
+        padding: 0 10px;
+        border: 1px solid #cccccc;
+      }
+
+      .calci-btn {
+        cursor: pointer;
+        height: 40px;
+        width: 150px;
+        background-color: #174d6e;
+        border-radius: 20px;
+        border: none;
+        display: block;
+        margin: 20px auto;
+        font-size: 16px;
+        font-weight: bold;
+        color: #ffffff;
+      }
+
+      .calci-btn:hover {
+        transform: scale(1.05);
+        transition: transform 0.2s ease-in-out;
+      }
+
+      #ans {
+        display: block;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: #333333;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Age Calculator</h1>
+    <div class="container">
+      <div class="display-container">
+        <label for="dobdate">Select Your birth date</label>
+        <input
+          type="date"
+          class="calender"
+          id="dobdate"
+          placeholder="Enter Birthdate"
+        />
+      </div>
+      <span id="ans">Age:</span>
+      <button
+        type="submit"
+        class="calci-btn"
+        id="btn-calci"
+        onclick="age_calculate()"
+      >
+        Calculate Age
+      </button>
+    </div>
+    <script>
+      function age_calculate() {
+        const birthDate = document.getElementById("dobdate").value;
+
+        const birthYear = new Date(birthDate);
+        const currentDate = new Date();
+
+        let ageIs = currentDate.getFullYear() - birthYear.getFullYear();
+        const monthdiff = currentDate.getMonth() - birthYear.getMonth();
+
+        if (
+          monthdiff < 0 ||
+          (monthdiff === 0 && currentDate.getDate() < birthYear.getDate())
+        ) {
+          ageIs--;
+        }
+        document.getElementById("ans").innerText = `Age: ${ageIs}`;
+      }
+    </script>
+  </body>
+</html>
